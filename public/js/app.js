@@ -1899,6 +1899,31 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -1906,7 +1931,8 @@ __webpack_require__.r(__webpack_exports__);
     return {
       base_url: '',
       json_data: null,
-      counter: 1
+      counter: 1,
+      runs_data: null
     };
   },
   components: {
@@ -1940,6 +1966,37 @@ __webpack_require__.r(__webpack_exports__);
       } catch (e) {
         alert('Invalid Json Data');
       }
+    },
+    showRunsData: function showRunsData() {
+      var _this = this;
+
+      // now show the runs table data
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(this.base_url + '/runs').then(function (res) {
+        // console.log(res.data);
+        _this.runs_data = res.data;
+      })["catch"](function (err) {
+        console.log(err);
+      });
+    },
+    goToNext: function goToNext(nexturl) {
+      var _this2 = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(nexturl).then(function (res) {
+        // console.log(res.data);
+        _this2.runs_data = res.data;
+      })["catch"](function (err) {
+        console.log(err);
+      });
+    },
+    goToPrevious: function goToPrevious(preturl) {
+      var _this3 = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(preturl).then(function (res) {
+        // console.log(res.data);
+        _this3.runs_data = res.data;
+      })["catch"](function (err) {
+        console.log(err);
+      });
     }
   }
 });
@@ -37871,6 +37928,98 @@ var render = function() {
     ),
     _vm._v(" "),
     _c(
+      "button",
+      {
+        staticClass: "btn btn-info",
+        attrs: { type: "button", name: "button" },
+        on: {
+          click: function($event) {
+            return _vm.showRunsData()
+          }
+        }
+      },
+      [_vm._v("Show Runs Data")]
+    ),
+    _vm._v(" "),
+    _c("legend", [_vm._v("Runs table")]),
+    _vm._v(" "),
+    _vm.runs_data != null
+      ? _c("table", { staticClass: "table table-sm" }, [
+          _vm._m(0),
+          _vm._v(" "),
+          _c(
+            "tbody",
+            _vm._l(_vm.runs_data.data, function(item, ind) {
+              return item != null
+                ? _c("tr", { key: ind }, [
+                    _c("td", [_vm._v(_vm._s(item.run_name))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(item.created_at))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(item.last_modified_by_user_name))])
+                  ])
+                : _vm._e()
+            }),
+            0
+          )
+        ])
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.runs_data != null
+      ? _c("nav", { attrs: { "aria-label": "Page navigation example" } }, [
+          _c("ul", { staticClass: "pagination" }, [
+            _c(
+              "li",
+              {
+                staticClass: "page-item",
+                class: { disabled: _vm.runs_data.prev_page_url == null }
+              },
+              [
+                _c(
+                  "a",
+                  {
+                    staticClass: "page-link",
+                    attrs: { disable: "", href: "#" },
+                    on: {
+                      click: function($event) {
+                        $event.preventDefault()
+                        return _vm.goToPrevious(_vm.runs_data.prev_page_url)
+                      }
+                    }
+                  },
+                  [_vm._v("Previous")]
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "li",
+              {
+                staticClass: "page-item",
+                class: { disabled: _vm.runs_data.next_page_url == null }
+              },
+              [
+                _c(
+                  "a",
+                  {
+                    staticClass: "page-link",
+                    attrs: { href: "#" },
+                    on: {
+                      click: function($event) {
+                        $event.preventDefault()
+                        return _vm.goToNext(_vm.runs_data.next_page_url)
+                      }
+                    }
+                  },
+                  [_vm._v("Next")]
+                )
+              ]
+            )
+          ])
+        ])
+      : _vm._e(),
+    _vm._v(" "),
+    _c(
       "div",
       {
         staticClass: "modal fade",
@@ -37888,7 +38037,7 @@ var render = function() {
           { staticClass: "modal-dialog", attrs: { role: "document" } },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(0),
+              _vm._m(1),
               _vm._v(" "),
               _c(
                 "div",
@@ -38029,6 +38178,20 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Upload Name")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Upload Time")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("User Uploaded By")])
+      ])
+    ])
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement

@@ -24,4 +24,5 @@ Route::post('/insert-data','DataController@store');
 
 Route::get('/user-enable/{id}','UserController@enableUser');
 Route::get('/user-disable/{id}','UserController@disableUser');
-Route::resource('/users','UserController');
+Route::resource('users','UserController');
+Route::resource('runs','RunController');

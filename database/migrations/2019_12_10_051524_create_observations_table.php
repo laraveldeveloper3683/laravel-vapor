@@ -15,26 +15,26 @@ class CreateObservationsTable extends Migration
     {
         Schema::create('observations', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('observation_uuid');
-            $table->string('well_uuid');
-            $table->string('target')->nullable();
+            $table->longText('observation_uuid');
+            $table->longText('well_uuid');
+            $table->longText('target')->nullable();
             $table->longText('readings');
-            $table->string('azure_classification')->nullable();
-            $table->string('azure_ct')->nullable();
-            $table->string('classification')->nullable();
-            $table->string('ct')->nullable();
-            $table->string('exposed_analysis_results')->nullable();
-            $table->string('machine_classification')->nullable();
-            $table->string('machine_ct')->nullable();
-            $table->string('mix_channel_uuid')->nullable();
-              $table->string('obs_uuid')->nullable();
-            $table->string('rfu')->nullable();
-            $table->string('rules')->nullable();
-            $table->string('rules_classification')->nullable();
-            $table->string('rules_ct')->nullable();
-            $table->string('settings')->nullable();
-            $table->string('template_channel_tags')->nullable();
-            $table->integer('calculated_quantity')->nullable();
+            $table->longText('azure_classification')->nullable();
+            $table->longText('azure_ct')->nullable();
+            $table->longText('classification')->nullable();
+            $table->longText('ct')->nullable();
+            $table->longText('exposed_analysis_results')->nullable();
+            $table->longText('machine_classification')->nullable();
+            $table->longText('machine_ct')->nullable();
+            $table->longText('mix_channel_uuid')->nullable();
+            $table->longText('obs_uuid')->nullable();
+            $table->longText('rfu')->nullable();
+            $table->longText('rules')->nullable();
+            $table->longText('rules_classification')->nullable();
+            $table->longText('rules_ct')->nullable();
+            $table->longText('settings')->nullable();
+            $table->longText('template_channel_tags')->nullable();
+            $table->bigInteger('calculated_quantity')->nullable();
             $table->timestamps();
         });
     }
