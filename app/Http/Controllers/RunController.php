@@ -18,7 +18,7 @@ class RunController extends Controller
      */
     public function index()
     {
-        $runs = Run::orderBy('id','desc')->paginate(1);
+        $runs = Run::orderBy('id','desc')->paginate(20);
         return \response()->json($runs);
     }
 

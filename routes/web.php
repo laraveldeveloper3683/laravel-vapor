@@ -20,7 +20,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/insert-data','DataController@index');
 Route::post('/insert-data','DataController@store');
-
+Route::post('/run','DataController@create');
 
 Route::get('/user-enable/{id}','UserController@enableUser');
 Route::get('/user-disable/{id}','UserController@disableUser');

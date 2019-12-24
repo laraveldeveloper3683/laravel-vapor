@@ -112,13 +112,22 @@ class DataController extends Controller
         $observation->template_channel_tags = isset($value['template_channel_tags']) ? json_encode($value['template_channel_tags']) : null;
         $observation->calculated_quantity = isset($value['calculated_quantity']) ? $value['calculated_quantity'] : null;
         $observation->save();
-
       }
-
     }
-
     return response()->json(['status' => 'inserted']);
-
-
   }
+
+    public function create(Request $request)
+    {
+        for ($i = 0; $i < $request->counter; $i++) {
+            // first create new runs
+            $runs = new Run();
+            $runs->user_id = auth()->user()->id;
+            $runs->last_modified_by_user_name = auth()->user()->name;
+            $runs->run_name = $request->run_name;
+            $runs->runs_uuid = Str::uuid();
+            $runs->save();
+        }
+        return back()->with('message','All Runs Created Successfully');
+    }
 }
